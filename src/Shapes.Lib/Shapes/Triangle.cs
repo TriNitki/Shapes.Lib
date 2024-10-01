@@ -25,26 +25,9 @@ public class Triangle : IShape
     /// Triangle constructor.
     /// </summary>
     /// <param name="sides"> Triangle sides. </param>
-    /// <exception cref="ArgumentException"> Incorrect sides were passed. </exception>
-    /// <exception cref="ArgumentOutOfRangeException"> Incorrect number of passed parameters. </exception>
     public Triangle(params double[] sides)
     {
-        try
-        {
-            sides = [sides[0], sides[1], sides[2]];
-        }
-        catch (IndexOutOfRangeException)
-        {
-            throw new ArgumentOutOfRangeException(nameof(sides), sides, "Number of passed sides must be at least 3.");
-        }
-
-        if (sides[0] <= 0 || sides[1] <= 0 || sides[2] <= 0)
-            throw new ArgumentException("Sides must be positive.");
-
-        Array.Sort(sides);
-
-        if (sides[0] + sides[1] <= sides[2])
-            throw new ArgumentException("Hypotenuse must be less than the sum of the catheti.");
+        ValidateSides(sides);
 
         SideA = sides[0];
         SideB = sides[1];
@@ -67,5 +50,30 @@ public class Triangle : IShape
         double[] sides = [SideA, SideB, SideC];
         Array.Sort(sides);
         return Math.Abs(sides[2] * sides[2] - (sides[0] * sides[0] + sides[1] * sides[1])) < 1e-10;
+    }
+
+    /// <summary>
+    /// Validate passed sides.
+    /// </summary>
+    /// <param name="sides"> Triangle sides. </param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentOutOfRangeException"> Incorrect sides were passed. </exception>
+    /// <exception cref="ArgumentException"> Incorrect sides were passed.  </exception>
+    private void ValidateSides(params double[] sides)
+    {
+        try
+        {
+            sides = [sides[0], sides[1], sides[2]];
+        }
+        catch (IndexOutOfRangeException)
+        {
+            throw new ArgumentOutOfRangeException(nameof(sides), sides, "Number of passed sides must be at least 3.");
+        }
+
+        if (sides[0] <= 0 || sides[1] <= 0 || sides[2] <= 0)
+            throw new ArgumentException("Sides must be positive.");
+
+        if (!(sides[0] + sides[1] > sides[2] && sides[0] + sides[2] > sides[1] && sides[1] + sides[2] > sides[0]))
+            throw new ArgumentException("Sum of any two sides must be greater than the third side.");
     }
 }

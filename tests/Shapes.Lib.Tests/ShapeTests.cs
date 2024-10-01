@@ -64,7 +64,7 @@ public class ShapeTests
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentOutOfRangeException))]
-    public void TestInvalidTriangleParameters()
+    public void TestInvalidTriangleSidesAmount()
     {
         new Triangle(1, 2);
     }
@@ -80,9 +80,19 @@ public class ShapeTests
     }
 
     [TestMethod]
-    public void TestShapeFactoryForTriangle()
+    public void TestShapeFactoryForTriangleUsingType()
     {
         var shape = ShapeFactory.CreateShape(ShapeEnum.Triangle, 3, 4, 5);
+
+        var area = shape.CalculateArea();
+
+        Assert.AreEqual(6, area, Delta);
+    }
+
+    [TestMethod]
+    public void TestShapeFactoryForTriangleUsingName()
+    {
+        var shape = ShapeFactory.CreateShape("Triangle", 3, 4, 5);
 
         var area = shape.CalculateArea();
 
@@ -94,5 +104,12 @@ public class ShapeTests
     public void TestShapeFactoryInvalidParameters()
     {
         ShapeFactory.CreateShape(ShapeEnum.Triangle, 3, 2);
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentOutOfRangeException))]
+    public void TestShapeFactoryInvalidName()
+    {
+        ShapeFactory.CreateShape("Rectangle", 2, 4, 2, 4);
     }
 }
