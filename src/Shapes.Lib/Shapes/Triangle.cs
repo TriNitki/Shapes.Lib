@@ -5,21 +5,16 @@
 /// </summary>
 public class Triangle : IShape
 {
-    /// <summary>
-    /// First side.
-    /// </summary>
-    public double SideA { get; }
+    private double[] _sides;
 
     /// <summary>
-    /// Second side.
+    /// Triangle sides.
     /// </summary>
-    public double SideB { get; }
-
-    /// <summary>
-    /// Third side.
-    /// </summary>
-    public double SideC { get; }
-
+    public double[] Sides
+    {
+        get => _sides;
+        set => _sides = GetValidatedSides(value);
+    }
 
     /// <summary>
     /// Triangle constructor.
@@ -27,18 +22,14 @@ public class Triangle : IShape
     /// <param name="sides"> Triangle sides. </param>
     public Triangle(params double[] sides)
     {
-        ValidateSides(sides);
-
-        SideA = sides[0];
-        SideB = sides[1];
-        SideC = sides[2];
+        _sides = GetValidatedSides(sides);
     }
 
     /// <inheritdoc/>
     public double CalculateArea()
     {
-        var s = (SideA + SideB + SideC) / 2;
-        return Math.Sqrt(s * (s - SideA) * (s - SideB) * (s - SideC));
+        var s = (_sides[0] + _sides[1] + _sides[2]) / 2;
+        return Math.Sqrt(s * (s - _sides[0]) * (s - _sides[1]) * (s - _sides[2]));
     }
 
     /// <summary>
@@ -47,19 +38,19 @@ public class Triangle : IShape
     /// <returns> <see langword="true"/> if the triangle is right and <see langword="false"/> otherwise. </returns>
     public bool IsRightTriangle()
     {
-        double[] sides = [SideA, SideB, SideC];
+        double[] sides = [_sides[0], _sides[1], _sides[2]];
         Array.Sort(sides);
         return Math.Abs(sides[2] * sides[2] - (sides[0] * sides[0] + sides[1] * sides[1])) < 1e-10;
     }
 
     /// <summary>
-    /// Validate passed sides.
+    /// Validates passed sides.
     /// </summary>
     /// <param name="sides"> Triangle sides. </param>
-    /// <returns></returns>
+    /// <returns> Validated triangle sides. </returns>
     /// <exception cref="ArgumentOutOfRangeException"> Incorrect sides were passed. </exception>
     /// <exception cref="ArgumentException"> Incorrect sides were passed.  </exception>
-    private void ValidateSides(params double[] sides)
+    private double[] GetValidatedSides(params double[] sides)
     {
         try
         {
@@ -75,5 +66,7 @@ public class Triangle : IShape
 
         if (!(sides[0] + sides[1] > sides[2] && sides[0] + sides[2] > sides[1] && sides[1] + sides[2] > sides[0]))
             throw new ArgumentException("Sum of any two sides must be greater than the third side.");
+
+        return sides;
     }
 }
