@@ -50,7 +50,7 @@ public class Triangle : IShape
     /// <returns> Validated triangle sides. </returns>
     /// <exception cref="ArgumentOutOfRangeException"> Incorrect sides were passed. </exception>
     /// <exception cref="ArgumentException"> Incorrect sides were passed.  </exception>
-    private double[] GetValidatedSides(params double[] sides)
+    private double[] GetValidatedSides(double[] sides)
     {
         try
         {
