@@ -51,13 +51,6 @@ public class TriangleTests : BaseTest
     }
 
     [TestMethod]
-    [ExpectedException(typeof(ArgumentOutOfRangeException))]
-    public void TestInvalidTriangleSidesAmount()
-    {
-        new Triangle(1, 2);
-    }
-
-    [TestMethod]
     [ExpectedException(typeof(ArgumentException))]
     public void TestInvalidEditTriangleSides()
     {

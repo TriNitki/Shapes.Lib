@@ -19,10 +19,21 @@ public class Triangle : IShape
     /// <summary>
     /// Triangle constructor.
     /// </summary>
-    /// <param name="sides"> Triangle sides. </param>
-    public Triangle(params double[] sides)
+    /// <param name="sideA"> First side. </param>
+    /// <param name="sideB"> Second side. </param>
+    /// <param name="sideC"> Third side. </param>
+    public Triangle(double sideA, double sideB, double sideC)
     {
-        _sides = GetValidatedSides(sides);
+        Sides = [sideA, sideB, sideC];
+    }
+
+    /// <summary>
+    /// Triangle constructor.
+    /// </summary>
+    /// <param name="sides"> Array of sides. </param>
+    public Triangle(double[] sides)
+    {
+        Sides = sides;
     }
 
     /// <inheritdoc/>
@@ -58,7 +69,7 @@ public class Triangle : IShape
         }
         catch (IndexOutOfRangeException)
         {
-            throw new ArgumentOutOfRangeException(nameof(sides), sides, "Number of passed sides must be at least 3.");
+            throw new ArgumentOutOfRangeException(nameof(sides), sides, "Number of passed parameters must be at least 3.");
         }
 
         if (sides[0] <= 0 || sides[1] <= 0 || sides[2] <= 0)

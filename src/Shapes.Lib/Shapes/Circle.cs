@@ -13,7 +13,7 @@ public class Circle : IShape
     public double Radius
     {
         get => _radius; 
-        set => _radius = GetValidatedRadius([value]);
+        set => _radius = GetValidatedRadius(value);
     }
 
     /// <summary>
@@ -22,16 +22,7 @@ public class Circle : IShape
     /// <param name="radius"> Circle radius. </param>
     public Circle(double radius)
     {
-        Radius = GetValidatedRadius([radius]);
-    }
-
-    /// <summary>
-    /// Circle constructor.
-    /// </summary>
-    /// <param name="parameters"> Circle parameters </param>
-    public Circle(double[] parameters)
-    {
-        Radius = GetValidatedRadius(parameters);
+        Radius = radius;
     }
 
     /// <inheritdoc/>
@@ -41,24 +32,13 @@ public class Circle : IShape
     }
 
     /// <summary>
-    /// Validates passed parameters.
+    /// Validates passed radius.
     /// </summary>
-    /// <param name="parameters"> Parameters. </param>
+    /// <param name="radius"> Radius. </param>
     /// <returns> Validated radius. </returns>
     /// <exception cref="ArgumentException"> Incorrect radius was passed. </exception>
-    /// <exception cref="ArgumentOutOfRangeException"> Incorrect amount of parameters passed. </exception>
-    private double GetValidatedRadius(double[] parameters)
+    private double GetValidatedRadius(double radius)
     {
-        double radius;
-        try
-        {
-            radius = parameters[0];
-        }
-        catch (IndexOutOfRangeException)
-        {
-            throw new ArgumentOutOfRangeException(nameof(parameters), parameters, "Number of passed parameters must be at least 1.");
-        }
-
         if (radius <= 0)
             throw new ArgumentException("Radius must be positive");
 
