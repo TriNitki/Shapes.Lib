@@ -106,7 +106,7 @@ public static class ShapeFactory
     /// </summary>
     /// <param name="shapeType"> Shape type. </param>
     /// <param name="parameters"> Parameters for shape constructor. </param>
-    /// <returns></returns>
+    /// <returns> Shape instance. </returns>
     /// <exception cref="ArgumentException"> Incorrect parameters were passed. </exception>
     /// <exception cref="MissingMethodException"> No proper constructor. </exception>
     private static object GetInstance(Type shapeType, object[] parameters)
