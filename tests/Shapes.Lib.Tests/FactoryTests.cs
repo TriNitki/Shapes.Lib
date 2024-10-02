@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Shapes.Lib.Shapes;
 
 namespace Shapes.Lib.Tests;
 
@@ -33,6 +34,15 @@ public class FactoryTests : BaseTest
     }
 
     [TestMethod]
+    public void TestShapeFactoryForCircleUsingGeneric()
+    {
+        var shape = ShapeFactory.CreateShape<Circle>(3, 4, 5);
+        var area = shape.CalculateArea();
+
+        Assert.AreEqual(Math.PI * 9, area, Delta);
+    }
+
+    [TestMethod]
     [ExpectedException(typeof(ArgumentOutOfRangeException))]
     public void TestShapeFactoryInvalidParameters()
     {
@@ -44,5 +54,12 @@ public class FactoryTests : BaseTest
     public void TestShapeFactoryInvalidName()
     {
         ShapeFactory.CreateShape("Rectangle", 2, 4, 2, 4);
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(MissingMethodException))]
+    public void TestShapeFactoryInvalidGeneric()
+    {
+        ShapeFactory.CreateShape<IShape>(2);
     }
 }

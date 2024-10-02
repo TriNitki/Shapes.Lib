@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4A6449A3-2AF
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{5F5A258F-1C0D-4C13-B832-97DC7F77A0A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shapes.Lib.Tests", "tests\Shapes.Lib.Tests\Shapes.Lib.Tests.csproj", "{9C96724A-C6F0-4852-BAE8-FFE0194D9001}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shapes.Lib.Tests", "tests\Shapes.Lib.Tests\Shapes.Lib.Tests.csproj", "{9C96724A-C6F0-4852-BAE8-FFE0194D9001}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shapes.Lib", "src\Shapes.Lib\Shapes.Lib.csproj", "{C9C464FC-B93C-4C39-894A-9EA6808DA3CF}"
 EndProject

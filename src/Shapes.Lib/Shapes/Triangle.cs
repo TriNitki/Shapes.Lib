@@ -48,7 +48,7 @@ public class Triangle : IShape
     /// </summary>
     /// <param name="sides"> Triangle sides. </param>
     /// <returns> Validated triangle sides. </returns>
-    /// <exception cref="ArgumentOutOfRangeException"> Incorrect sides were passed. </exception>
+    /// <exception cref="ArgumentOutOfRangeException"> Incorrect amount of sides passed. </exception>
     /// <exception cref="ArgumentException"> Incorrect sides were passed.  </exception>
     private double[] GetValidatedSides(double[] sides)
     {
