@@ -1,7 +1,7 @@
 ﻿namespace Shapes.Lib.Shapes;
 
 /// <summary>
-/// Shape interface.
+/// Shape.
 /// </summary>
 public interface IShape
 {
